@@ -1,8 +1,27 @@
 <div id="welcome">
   <div class="container">
-    <%= questions.length %>
-    <% questions.forEach(q => { %>
-      <%= q.text %>
-    <% }) %>
+    <h4>Pending questions: <%= questions.length %></h4>
+
+    <ul class="pl-0 mt-4">
+      <% questions.forEach(q => { %>
+        <li class="mt-2">
+          <p><%= q.text %></p>
+
+          <p>
+            <strong><%= q.asker %></strong>
+            <span> asked </span>
+            <%= timeAgo(q.createdAt) %> ago.
+          </p>
+
+          <form action="/questions/<%= q.id %>" method="POST">
+            <input name="_method" type="hidden" value="PATCH"/>
+            <textarea cols="32" rows="4" placeholder="Response" id="" name="response" rows="10"></textarea>
+            <p>
+              <button>Send</button>
+            </p>
+          </form>
+        </li>
+      <% }) %>
+    </ul>
   </div>
 </div>

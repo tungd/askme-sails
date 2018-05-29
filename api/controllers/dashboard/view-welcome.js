@@ -1,5 +1,7 @@
 /*global Question*/
 
+const timeAgo = require('date-fns/distance_in_words_to_now')
+
 module.exports = {
   friendlyName: 'View welcome page',
   description: 'Display the dashboard "Welcome" page.',
@@ -19,6 +21,6 @@ module.exports = {
       },
       sort: 'createdAt DESC'
     });
-    return exits.success({ questions });
+    return exits.success({ timeAgo, questions });
   }
 };
